@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}home{% endblock %}
+
+{% block body %}
+
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+    
+	{{ include('includes/navbar.html.twig') }}
+	 
+	  <div class="content-wrapper">
+	    <div class="container">
+	      <section class="content">
+	        <div class="row">
+	        	<div class="col-sm-8 col-sm-offset-2">
+				
+	        		{% if app.session.get('error') %}
+	        					<div class='alert alert-danger'>
+	        						 {{ app.session.get('error') }}
+	        					</div>
+	        		{% endif %}		
+	        		
+	        		<div class="box">
+	        			<div class="box-header with-border">
+	        				<div class="input-group">
+				                <input type="text" class="form-control input-lg" id="searchBox" placeholder="Search for ISBN, Title or Author">
+				                <span class="input-group-btn">
+				                    <button type="button" class="btn btn-primary btn-flat btn-lg"><i class="fa fa-search"></i> </button>
+				                </span>
+				            </div>
+	        			</div>
+			<div class="box-body">
+				<div class="input-group col-sm-5">
+					<span class="input-group-addon">Category:</span>
+				<select class="form-control" id="catlist">
+					<option value=0>ALL</option>
+					{% for cat in cats %}
+						{% if cat.id == catId%}
+							<option value={{cat.id}} selected>{{cat.name}}</option>
+							{% else %}
+							<option value={{cat.id}}>{{cat.name}}</option>
+						{% endif %}
+					
+					{% endfor %}
+					
+				</select>
+				</div>
+				<table class="table table-bordered table-striped" id="booklist">
+					<thead>
+						<th>ISBN</th>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Status</th>
+					</thead>
+					<tbody>
+					
+							{% for book in books %}
+        						<tr>
+									
+									<td>{{book.isbn}}</td>
+									<td>{{book.title}}</td>
+									<td>{{book.author}}</td>
+									<td>
+									{% if book.status == 0 %}
+										<span class="label label-success">available</span>
+										{% else %}
+										<span class="label label-danger">not available</span>
+									{% endif %}
+    						
+							
+							
+									</td>
+								</tr>
+    						{% endfor %}
+								
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+	        	</div>
+	        </div>
+	      </section>
+	     
+	    </div>
+	  </div>
+	  <script>
+			$(function () {
+				$('#example1').DataTable()
+				var bookTable = $('#booklist').DataTable({
+				'paging'      : true,
+				'lengthChange': false,
+				'searching'   : true,
+				'ordering'    : true,
+				'info'        : false,
+				'autoWidth'   : false
+				})
+
+				$('#searchBox').on('keyup', function(){
+					bookTable.search(this.value).draw();
+				});
+
+			})
+</script>
+<script>
+$(function(){
+	$('#catlist').on('change', function(){	
+		if($(this).val() == 0){
+			window.location = 'index';
+		}
+		else{
+			window.location = 'index?category='+$(this).val();
+		}
+		
+	});
+});
+</script>
+{{ include('includes/footer.html.twig') }}
+</div>
+{% endblock %}

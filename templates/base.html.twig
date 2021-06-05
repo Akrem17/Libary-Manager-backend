@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
+  	        <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
+            <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css')}}">
+            
+        {% endblock %}
+
+        {% block javascripts %}
+
+
+<script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{ asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('bower_components/moment/moment.js')}}"></script>
+<script src="{{ asset('bower_components/chart.js/Chart.js')}}"></script>
+<script src="{{ asset('bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+<script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
+<script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+<script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
+
+<script>
+ 
+  $('#datepicker_add').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd'
+  })
+  $('#datepicker_edit').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd'
+  }) 
+</script>
+<script>
+  $(function () {
+    $('#example1').DataTable({
+      responsive: true
+    })
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+$(function(){
+
+	var url = window.location;
+	$('ul.sidebar-menu a').filter(function() {
+	    return this.href == url;
+	}).parent().addClass('active');
+
+
+	$('ul.treeview-menu a').filter(function() {
+	    return this.href == url;
+	}).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
+
+});
+</script
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        
+    </body>
+    
+</html>

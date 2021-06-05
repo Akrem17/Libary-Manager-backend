@@ -1,0 +1,24 @@
+index:
+    path: /index
+    controller: App\Controller\HomeController::index
+admin/login:
+    path: admin/login
+    controller: App\Controller\AdminLoginController::index
+admin/dashboard:
+    path: admin/dashboard
+    controller: App\Controller\AdminDashboardController::index
+
+admin/category:
+    path: admin/category
+    controller: App\Controller\CategoryController::index
+admin/books:
+    path: admin/books
+    controller: App\Controller\BooksController::index
+admin/transaction/borrow:
+    path: admin/transaction/borrow
+    controller: App\Controller\TransactionBorrowController::index
+    
+admin/transaction/return:
+    path: admin/transaction/return
+    controller: App\Controller\TransactionReturnController::index
+    
